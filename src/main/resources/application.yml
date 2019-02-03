@@ -1,0 +1,10 @@
+spring:
+  h2:
+    console:
+      enabled: true
+
+  flyway:
+    enabled: true
+    url: jdbc:mariadb://localhost:3306/SC_SCHEMA
+    user: root
+    password: my-secret-pw
