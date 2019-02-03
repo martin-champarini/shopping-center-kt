@@ -12,9 +12,6 @@ class CityService(var cityRepository: CityRepository){
              name = nameParam,
              orientation = orientationParam
         )
-        val cityResult = cityRepository.save(city)
-
-
-        return cityResult
+        return cityRepository.save(city)
     }
 }
