@@ -34,6 +34,7 @@ class CountryServiceTest() {
         val resultCountry = mockitoCountryService.addCountry("Argentina", "South America", "Buenos Aires")
         Assert.assertNotNull(resultCountry)
         Assert.assertEquals("Argentina", resultCountry.name)
+        Assert.assertEquals("Buenos Aires", resultCountry.city.first().name)
         Mockito.verify(mockitoCountryService).addCountry(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString())
     }
 
