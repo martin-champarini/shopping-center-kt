@@ -4,17 +4,19 @@ spring:
     url: jdbc:mariadb://localhost:3306/SC_SCHEMA
     user: root
     #password in Vault
+    password: my-secret-pw
 
   datasource:
     url: jdbc:mariadb://localhost:3306/SC_SCHEMA
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
+    password: my-secret-pw
     #password in Vault
 
-  jpa:
-    hibernate:
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#  jpa:
+#    hibernate:
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 #    hikari:
 #      auto-commit: true
 #      driver-class-name: org.mariadb.jdbc.Driver

@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@Api(value="admin-controller", description="All operation allowed")
-class AdminController(var cityService: CityService, var countryService: CountryService) {
+@Api(value="country-controller", description="All operation allowed")
+class CountryController(var cityService: CityService, var countryService: CountryService) {
 
-    @PostMapping("addCity")
-    @ApiOperation(value = "Add cities")
-    fun addCity(@RequestParam nameParam: String, @RequestParam orientationParam: String): City {
-        return cityService.createCity(nameParam, orientationParam)
-    }
+//    @PostMapping("addCity")
+//    @ApiOperation(value = "Add cities")
+//    fun addCity(@RequestParam nameParam: String, @RequestParam orientationParam: String): City {
+//        return cityService.createCity(nameParam, orientationParam)
+//    }
 
     @PostMapping("addCountry")
     @ApiOperation(value = "Add Country And City")

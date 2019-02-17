@@ -1,15 +1,17 @@
 package com.shopping.center.kt.shoppingcenterkt.model
 
 import java.io.Serializable
-import java.util.Date
+import java.util.*
 import javax.persistence.Entity
 import javax.persistence.Table
 import javax.persistence.Id
 import javax.persistence.OneToMany
 import javax.persistence.CascadeType.*
+import javax.persistence.Column
 import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
+import javax.persistence.JoinColumn
 import javax.persistence.JoinTable
 import javax.persistence.ManyToMany
 import javax.persistence.ManyToOne
@@ -17,109 +19,112 @@ import javax.persistence.OneToOne
 
 
 @Entity
-@Table(name = "`COUNTRY`")
 data class Country (
 
+        val name: String? = null,
+
+        val continent: String? = null,
+
         @Id
-        val name: String,
+        val city: String? = null,
 
-        val continent: String,
-
-        @OneToMany(cascade = [ALL], mappedBy = "name")
-        val city: List<City>
+        @OneToMany(cascade = [ALL], mappedBy = "country")
+        val cities: Set<City>? = null
 
 ): Serializable
 
 @Entity
-@Table(name = "`CITY`")
 data class City (
 
         @Id
-
         val name: String,
+
+        @ManyToOne
+        @JoinColumn(name = "name", updatable = false, insertable = false)
+        val country: Country? = null,
 
         val orientation: String? = null
 
 ): Serializable
 
-@Entity
-@Table(name = "PRODUCT")
-data class Product (
+//@Entity
+//@Table(name = "PRODUCT")
+//data class Product (
+//
+//        @Id
+//        @GeneratedValue(strategy = GenerationType.AUTO)
+//        val id: Long,
+//
+//        val description: String? = null,
+//
+//        val price: Double,
+//
+//        val name: String,
+//
+//        @OneToMany(cascade = [ALL], mappedBy = "name")
+//        val originCountry: Country
+//
+//): Serializable
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        val id: Long,
-
-        val description: String? = null,
-
-        val price: Double,
-
-        val name: String,
-
-        @OneToMany(cascade = [ALL], mappedBy = "name")
-        val originCountry: Country
-
-): Serializable
-
-@Entity
-@Table(name = "ORDER")
-data class Order (
-
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        val id: Long,
-
-        @ManyToOne(cascade = [ALL], fetch = FetchType.LAZY)
-        val user: User,
-
-        @ManyToMany(cascade = [MERGE, PERSIST])
-        @JoinTable(name = "id")
-        val products: Set<Product>,
-
-        @OneToOne(cascade = [ALL], mappedBy = "status")
-        val statusOrder: StatusOrder,
-
-        val orderDate: Date
-
-): Serializable
-
-@Entity
-@Table(name = "USER")
-data class User (
-
-        @Id
-        val username: String,
-
-        val password: String,
-
-        @OneToOne(cascade = [ALL], mappedBy = "status")
-        val session: UserSession
-
-): Serializable
-
-
-@Entity
-@Table(name = "USER_SESSION")
-data class UserSession (
-
-        @Id
-        val status: String,
-
-        val description: String,
-
-        val startTime: Date,
-
-        val endTime: Date
-
-): Serializable
-
-@Entity
-@Table(name = "STATUS_ORDER")
-data class StatusOrder(
-
-        @Id
-        val status: String,
-
-        val description: String
-
-): Serializable
+//@Entity
+//@Table(name = "ORDER")
+//data class Order (
+//
+//        @Id
+//        @GeneratedValue(strategy = GenerationType.AUTO)
+//        val id: Long,
+//
+//        @ManyToOne(cascade = [ALL], fetch = FetchType.LAZY)
+//        val user: User,
+//
+//        @ManyToMany(cascade = [MERGE, PERSIST])
+//        @JoinTable(name = "id")
+//        val products: Set<Product>,
+//
+//        @OneToOne(cascade = [ALL], mappedBy = "status")
+//        val statusOrder: StatusOrder,
+//
+//        val orderDate: Date
+//
+//): Serializable
+//
+//@Entity
+//@Table(name = "USER")
+//data class User (
+//
+//        @Id
+//        val username: String,
+//
+//        val password: String,
+//
+//        @OneToOne(cascade = [ALL], mappedBy = "status")
+//        val session: UserSession
+//
+//): Serializable
+//
+//
+//@Entity
+//@Table(name = "USER_SESSION")
+//data class UserSession (
+//
+//        @Id
+//        val status: String,
+//
+//        val description: String,
+//
+//        val startTime: Date,
+//
+//        val endTime: Date
+//
+//): Serializable
+//
+//@Entity
+//@Table(name = "STATUS_ORDER")
+//data class StatusOrder(
+//
+//        @Id
+//        val status: String,
+//
+//        val description: String
+//
+//): Serializable

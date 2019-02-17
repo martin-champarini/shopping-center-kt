@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service
 @Service
 class CityService(var cityRepository: CityRepository){
 
+
     fun createCity(nameParam: String, orientationParam: String): City {
         val city = City(
              name = nameParam,
@@ -14,4 +15,6 @@ class CityService(var cityRepository: CityRepository){
         )
         return cityRepository.save(city)
     }
+
+
 }
