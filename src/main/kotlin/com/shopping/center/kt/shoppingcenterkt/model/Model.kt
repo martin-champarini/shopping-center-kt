@@ -18,34 +18,8 @@ import javax.persistence.ManyToOne
 import javax.persistence.OneToOne
 
 
-@Entity
-data class Country (
 
-        val name: String? = null,
 
-        val continent: String? = null,
-
-        @Id
-        val city: String? = null,
-
-        @OneToMany(cascade = [ALL], mappedBy = "country")
-        val cities: Set<City>? = null
-
-): Serializable
-
-@Entity
-data class City (
-
-        @Id
-        val name: String,
-
-        @ManyToOne
-        @JoinColumn(name = "name", updatable = false, insertable = false)
-        val country: Country? = null,
-
-        val orientation: String? = null
-
-): Serializable
 
 //@Entity
 //@Table(name = "PRODUCT")
